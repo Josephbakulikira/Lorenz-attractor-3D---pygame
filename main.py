@@ -4,7 +4,8 @@ from matrix import *
 import math
 import colorsys
 
-
+#--- enjoy the spaghetti code ------
+ 
 os.environ["SDL_VIDEO_CENTERED"]='1'
 width, height = 1920, 1080
 size = (width, height)
