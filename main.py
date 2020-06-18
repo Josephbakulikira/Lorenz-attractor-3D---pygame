@@ -5,7 +5,7 @@ import math
 import colorsys
 
 #--- enjoy the spaghetti code ------
- 
+
 os.environ["SDL_VIDEO_CENTERED"]='1'
 width, height = 1920, 1080
 size = (width, height)
@@ -24,11 +24,12 @@ points = []
 colors = []
 scale = 15
 angle = 0
-
+coordinates = []
+previous = None
 
 def hsv2rgb(h,s,v):
     return tuple(round(i * 255) for i in colorsys.hsv_to_rgb(h,s,v))
-
+can_draw = False
 run = True
 while run:
     screen.fill(black)
@@ -61,6 +62,7 @@ while run:
     point = [[x], [y], [z]]
     points.append(point)
     for p in range(len(points)):
+
         rotated_2d = matrix_multiplication(rotation_y, points[p])
         distance = 5
 
@@ -73,9 +75,17 @@ while run:
         y_pos = int(projected2d[1][0] * scale) + height//2
         if hue > 1:
             hue = 0
-        pygame.draw.circle(screen, (hsv2rgb(hue, 1, 1)) , (x_pos, y_pos), 1)
-        hue +=0.001
-    angle += 0.001
+        #pygame.draw.circle(screen, (hsv2rgb(hue, 1, 1)) , (x_pos, y_pos), 3)
+        if previous is not None:
+            if hue >  0.006:
+                pygame.draw.line(screen, (hsv2rgb(hue, 1, 1)), (x_pos, y_pos), previous, 4 )
+            can_draw = True
+
+        previous = (x_pos, y_pos)
+        hue +=0.006
+
+
+    angle += 0.01
 
     pygame.display.update()
 pygame.quit()
