@@ -24,7 +24,6 @@ points = []
 colors = []
 scale = 15
 angle = 0
-coordinates = []
 previous = None
 
 def hsv2rgb(h,s,v):
@@ -75,11 +74,11 @@ while run:
         y_pos = int(projected2d[1][0] * scale) + height//2
         if hue > 1:
             hue = 0
-        #pygame.draw.circle(screen, (hsv2rgb(hue, 1, 1)) , (x_pos, y_pos), 3)
-        if previous is not None:
-            if hue >  0.006:
-                pygame.draw.line(screen, (hsv2rgb(hue, 1, 1)), (x_pos, y_pos), previous, 4 )
-            can_draw = True
+        pygame.draw.circle(screen, (hsv2rgb(hue, 1, 1)) , (x_pos, y_pos), 3)
+        # if previous is not None:
+        #     if hue >  0.006:
+        #         pygame.draw.line(screen, (hsv2rgb(hue, 1, 1)), (x_pos, y_pos), previous, 4 )
+
 
         previous = (x_pos, y_pos)
         hue +=0.006
