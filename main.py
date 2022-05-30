@@ -36,6 +36,9 @@ while run:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             run = False
+        if event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_ESCAPE:
+                run = False
 
     rotation_x = [[1, 0, 0],
                   [0, math.cos(angle), -math.sin(angle)],
